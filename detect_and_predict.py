@@ -24,6 +24,7 @@ def detect_and_predict(contents):
         minSize=(40, 40)
     )
 
+
     if len(faces) == 0:
         return None, None, img  # Retourner aussi l'image originale
 
