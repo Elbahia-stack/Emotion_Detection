@@ -16,18 +16,13 @@ def say_hello():
 @app.post("/predict_emotion")
 async def predict_emotion(file: UploadFile = File(...), db: Session = Depends(get_db)):
     contents = await file.read()
-
     label, score = detect_and_predict(contents)  
-
     if label is None:
         raise HTTPException(status_code=400, detail="Aucun visage détecté.")
-
-  
     new_pred = Prediction(emotion=label, score=score)
     db.add(new_pred)
     db.commit()
     db.refresh(new_pred)
-
     return JSONResponse({
         "emotion": label,
         "score": round(score, 3),

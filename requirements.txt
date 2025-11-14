@@ -1,13 +1,10 @@
-# Librairies principales
 fastapi
 uvicorn
-python-multipart        # pour gérer l'upload de fichiers
-sqlalchemy
-tensorflow             # si tu utilises ton modèle ML
+tensorflow
 opencv-python
-pandas
-matplotlib
-
-# Librairies pour les tests
+sqlalchemy
+python-multipart
 pytest
+httpx
+
   
