@@ -6,5 +6,6 @@ sqlalchemy
 python-multipart
 pytest
 httpx
+python-dotenv
 
   
