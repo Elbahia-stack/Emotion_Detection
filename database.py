@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()  # charge les variables depuis .env
-DATABASE_URL = os.environ["DATABASE_URL"]
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
 #  Créer l'engine et la session
 engine = create_engine(DATABASE_URL)
