@@ -9,7 +9,7 @@ model = load_model('emotion_detection.keras')
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 class_names = ['angry', 'happy', 'sad', 'surprised', 'neutral']
-img = cv2.imread('img99.jpg')
+img = cv2.imread('m1.jpg')
 
 
 
@@ -38,7 +38,7 @@ for (x, y, w, h) in faces:
     # Prédiction avec le modèle
     prediction = model.predict(face_input)
     predicted_class = np.argmax(prediction)
-    score = float(np.max(prediction))
+ 
     label = class_names[predicted_class]
 
     # Afficher le rectangle et le label sur l’image

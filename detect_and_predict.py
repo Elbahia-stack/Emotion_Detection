@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 # Charger le modèle et le cascade Haar
 model = load_model('emotion_detection.keras')
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-class_names = ['angry', 'happy', 'sad', 'surprised', 'neutral']
+class_names = ['angry', 'disgusted','fearful','happy','neutral', 'sad', 'surprised']
 
 # Convertir bytes en image OpenCV
 def bytes_to_image(contents):
@@ -26,9 +26,8 @@ def detect_and_predict(contents):
 
 
     if len(faces) == 0:
-        return None, None, img  # Retourner aussi l'image originale
+        return None, None, img 
 
-    results = []
     for (x, y, w, h) in faces:
         face = img[y:y+h, x:x+w]
         face_resized = cv2.resize(face, (48, 48))
@@ -38,13 +37,12 @@ def detect_and_predict(contents):
         prediction = model.predict(face_input)
         predicted_class = np.argmax(prediction)
         score = float(np.max(prediction))
-        label = class_names[predicted_class]
+        emotion = class_names[predicted_class]
 
-        # Dessiner rectangle et label sur l'image
         cv2.rectangle(img, (x, y), (x+w, y+h), (203, 195, 255), 3)
-        cv2.putText(img, label, (x, y-10), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+        cv2.putText(img, emotion, (x, y-10), cv2.FONT_HERSHEY_COMPLEX_SMALL,
                     1, (203, 195, 255), 2, cv2.LINE_AA)
 
-        results.append({"emotion": label, "score": score, "box": [int(x), int(y), int(w), int(h)]})
+        
 
-    return results, img
+    return emotion,score
