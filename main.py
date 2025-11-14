@@ -34,6 +34,7 @@ async def predict_emotion(file: UploadFile = File(...), db: Session = Depends(ge
         "score": round(score, 3),
        
     })
+
 @app.get('/history')
 async def history(db: Session=Depends(get_db)):
     all_row=db.query(Prediction).all()
@@ -41,3 +42,4 @@ async def history(db: Session=Depends(get_db)):
       return[{ 'id':a.id,
               'emotion':a.emotion,
               'score':a.score}]
+    
