@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 
 # Charger le modèle et le cascade Haar
-model = load_model('emotion_detection.keras')
+model = tf.keras.models.load_model('emotion_detection.keras')
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 class_names = ['angry', 'disgusted','fearful','happy','neutral', 'sad', 'surprised']
 

@@ -1,7 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, Depends, HTTPException
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
-from datetime import datetime
 from database import Base, engine, get_db
 from model import Prediction
 from detect_and_predict import detect_and_predict  # <-- import de ta fonction

@@ -1,0 +1,19 @@
+name: python_test
+on:
+ [push]
+jobs:
+  test:
+   runs-on: ubuntu-letest
+   steps:
+     name:checkout repository
+     uses:action chechout@v4
+     name:install python 
+     uses: actions/setup-python@v5
+     with:
+        python-version: '3.11.9.'
+     name: Install dependencies
+     run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+     name: tester
+     run: pytest -v   
